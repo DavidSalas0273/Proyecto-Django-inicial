@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hoja de Vida</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2640;
+      --gold: #c9a84c;
+      --light: #f7f5f0;
+      --gray: #6b7280;
+      --border: #ddd5c2;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #e9e4db;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .cv {
+      width: 820px;
+      background: white;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 1100px;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      background: var(--navy);
+      color: white;
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #2d3f5e;
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .sidebar-section h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    .contact-item span.icon {
+      color: var(--gold);
+      font-size: 14px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .skill-item {
+      margin-bottom: 10px;
+    }
+
+    .skill-label {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+
+    .lang-level {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .interest-tag {
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .header .title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6px;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .profile-text {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.75;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .tl-date {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      text-align: right;
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+
+    .tl-content {
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .tl-content::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid white;
+    }
+
+    .tl-role {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .tl-org {
+      font-size: 12.5px;
+      color: var(--gray);
+      margin-top: 1px;
+      margin-bottom: 5px;
+    }
+
+    .tl-desc {
+      font-size: 12.5px;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    .tl-desc ul {
+      padding-left: 14px;
+    }
+
+    .tl-desc ul li {
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cv">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="photo-wrap">
+      <div class="photo">JG</div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Contacto</h3>
+      <div class="contact-item"><span class="icon">✉</span> juan.garcia@email.com</div>
+      <div class="contact-item"><span class="icon">☎</span> +57 310 000 0000</div>
+      <div class="contact-item"><span class="icon">⌖</span> Bogotá, Colombia</div>
+      <div class="contact-item"><span class="icon">in</span> linkedin.com/in/juangarcia</div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Habilidades</h3>
+      <div class="skill-item">
+        <div class="skill-label">Gestión de proyectos</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Análisis de datos</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Microsoft Office</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Liderazgo de equipos</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Comunicación efectiva</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Idiomas</h3>
+      <div class="lang-item"><span>Español</span><span class="lang-level">Nativo</span></div>
+      <div class="lang-item"><span>Inglés</span><span class="lang-level">Intermedio</span></div>
+      <div class="lang-item"><span>Portugués</span><span class="lang-level">Básico</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Intereses</h3>
+      <div class="interest-list">
+        <span class="interest-tag">Innovación</span>
+        <span class="interest-tag">Tecnología</span>
+        <span class="interest-tag">Liderazgo</span>
+        <span class="interest-tag">Sostenibilidad</span>
+        <span class="interest-tag">Lectura</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="header">
+      <h1>Juan García<br>Rodríguez</h1>
+      <div class="title">Administrador de Empresas</div>
+    </div>
+
+    <div class="section">
+      <h2>Perfil Profesional</h2>
+      <p class="profile-text">
+        Profesional con más de 6 años de experiencia en administración, gestión de proyectos
+        y análisis estratégico. Orientado a resultados, con capacidad de liderazgo y trabajo en equipo.
+        Comprometido con la mejora continua y la generación de valor en las organizaciones.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Experiencia Laboral</h2>
+
+      <div class="timeline-item">
+        <div class="tl-date">2022 – Presente</div>
+        <div class="tl-content">
+          <div class="tl-role">Coordinador de Proyectos</div>
+          <div class="tl-org">Empresa ABC S.A.S — Bogotá</div>
+          <div class="tl-desc">
+            <ul>
+              <li>Lideré equipos de hasta 12 personas en proyectos de expansión.</li>
+              <li>Reduje tiempos de entrega en un 20% mediante optimización de procesos.</li>
+              <li>Gestioné presupuestos anuales superiores a $500 millones COP.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">2019 – 2022</div>
+        <div class="tl-content">
+          <div class="tl-role">Analista Administrativo</div>
+          <div class="tl-org">Compañía XYZ Ltda — Medellín</div>
+          <div class="tl-desc">
+            <ul>
+              <li>Elaboré informes de gestión y reportes financieros mensuales.</li>
+              <li>Apoyé procesos de contratación y auditorías internas.</li>
+              <li>Implementé un sistema de seguimiento de indicadores de desempeño.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">2018 – 2019</div>
+        <div class="tl-content">
+          <div class="tl-role">Asistente Administrativo</div>
+          <div class="tl-org">Consultora Delta — Cali</div>
+          <div class="tl-desc">Apoyo en labores administrativas, atención a clientes y manejo de agenda ejecutiva.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Formación Académica</h2>
+
+      <div class="timeline-item">
+        <div class="tl-date">2013 – 2018</div>
+        <div class="tl-content">
+          <div class="tl-role">Administración de Empresas</div>
+          <div class="tl-org">Universidad Nacional de Colombia</div>
+          <div class="tl-desc">Grado con distinción. Trabajo de grado sobre innovación organizacional.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">2021</div>
+        <div class="tl-content">
+          <div class="tl-role">Diplomado en Gestión de Proyectos (PMI)</div>
+          <div class="tl-org">Universidad de los Andes</div>
+          <div class="tl-desc">Fundamentos de la metodología PMBoK aplicados a entornos empresariales.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
