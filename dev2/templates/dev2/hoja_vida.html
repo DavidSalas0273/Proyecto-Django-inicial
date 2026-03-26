@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Hoja de Vida</title>
+
+  <link rel="stylesheet" href="{% static 'dev2/styles.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="hero">
+  <h1 class="hero-name">Sebastián David Marcillo</h1>
+  <p class="hero-title">Desarrollador Web · Estudiante de Ingeniería</p>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="card">
+      <p class="section-label">Hobbies</p>
+      <ul>
+        <li>🎮 Videojuegos</li>
+        <li>🎵 Música</li>
+        <li>💻 Programar</li>
+        <li>⚽ Fútbol</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="section-label">Herramientas</p>
+      <ul>
+        <li>VS Code</li>
+        <li>Git & GitHub</li>
+        <li>Django</li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="card">
+      <h2 class="block-title">Perfil Profesional</h2>
+      <p class="profile-text">
+        Estudiante de ingeniería con enfoque en desarrollo web.
+        Me interesa crear aplicaciones modernas, limpias y funcionales,
+        aplicando buenas prácticas y trabajo colaborativo.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 class="block-title">Formación Académica</h2>
+      <ul class="timeline">
+        <li>2023 - Actualidad · Universidad Cooperativa de Colombia</li>
+        <li>2022 · Bachiller Académico</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="block-title">GitHub</h2>
+      <p>
+        <a href="https://github.com/DavidSalas0273" target="_blank">
+          Ver mi perfil →
+        </a>
+      </p>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
